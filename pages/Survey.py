@@ -22,8 +22,8 @@ st.write("Please fill out the form below to add your data to the dataset.")
 with st.form("survey_form"):
     # Create text input widgets for the user to enter data.
     # The first argument is the label that appears above the input box.
-    category_input = st.text_input("Enter a category:")
-    value_input = st.text_input("Enter a corresponding value:")
+    touse = st.selectbox("Where would you spend your Halloween?", ["Snool @ SNU", "Pit @ Beta", "Haunted house @ Sig Ep", "Waffle House", "Bed"])
+    boo = st.selectbox("What do you find the scariest?", ["Freshman 15", "CS 1301 exams", "Course registration", "Communal bathrooms", "8 AMs"])
 
     # The submit button for the form.
     submitted = st.form_submit_button("Submit Data")
@@ -38,9 +38,12 @@ with st.form("survey_form"):
         #    - Make sure to open the file in 'append' mode ('a').
         #    - Don't forget to add a newline character '\n' at the end.
         
+        newRow = touse + "," + boo + "\n"
+        with open("data.csv", "a") as file:
+            file.write(newRow)
+        
         st.success("Your data has been submitted!")
-        st.write(f"You entered: **Category:** {category_input}, **Value:** {value_input}")
-
+        st.write(f"You entered: **Halloween spot:** {touse}, **Scariest:** {boo}")
 
 # DATA DISPLAY
 # This section shows the current contents of the CSV file, which helps in debugging.
