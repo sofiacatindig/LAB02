@@ -12,12 +12,14 @@ st.set_page_config(
 )
 
 # WELCOME PAGE TITLE
-st.title("Welcome to the Data Dashboard! 📊")
+st.title("Spooky Season Dashboard🎃")
 
 # INTRODUCTORY TEXT
 st.write("""
-This application is designed to collect and visualize data.
-You can navigate to the different pages using the sidebar on the left.
+Explore spooky data collected from the Jackets :)
+Find out where touse is on Halloween and what spooks Tech students the most!
+You can also visualize the survey responses through interactive charts on 'Visuals.'
+(Navigate between the pages using the sidebar)
 
 ### How to use this app:
 - **Survey Page**: Go here to input new data into our CSV file.
