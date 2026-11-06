@@ -66,3 +66,64 @@ st.pyplot(fig2)
 
 # PART 2: GRAPHS FROM data.csv
 # --- YOUR CODE GOES HERE ---
+
+survey = pd.read_csv("data.csv")
+survey.columns = survey.columns.str.strip()
+
+st.subheader("What People Find Scariest")
+
+count = survey["Fear"].value_counts()
+
+fig3, ax3 = plt.subplots()
+ax3.bar(count.index, count.values)
+ax3.set_title("Scariest Things on Campus")
+ax3.set_xlabel("Fear")
+ax3.set_ylabel("Number of votes")
+ax3.tick_params(axis="x", rotation=30)
+
+st.pyplot(fig3)
+
+st.subheader("Where People Spend Halloween")
+
+if "filter" not in st.session_state:
+    st.session_state["filter"] = "All"
+
+st.selectbox(
+    "Show people most scared of:",
+    ["All", "Freshman 15", "CS 1301 exams", "Course registration", "Communal bathrooms", "8 AMs"],
+    key="filter",
+)
+
+selected = st.session_state["filter"]
+
+if selected == "All":
+    filteredSurvey = survey
+else:
+    filteredSurvey = survey[survey["Fear"] == selected]
+
+booCounts = filteredSurvey["Touse"].value_counts()
+
+if len(booCounts) == 0:
+    st.write("No one has picked that yet.")
+else:
+    fig4, ax4 = plt.subplots()
+    ax4.pie(booCounts, labels=booCounts.index, autopct="%1.0f%%")
+    ax4.set_title(f"Where People Spend Halloween ({selected})")
+    st.pyplot(fig4)
+
+    meanVotes = float(round(booCounts.mean(), 2))
+    medianVotes = float(booCounts.median())
+
+    if "oldMean" not in st.session_state:
+        st.session_state["oldMean"] = meanVotes
+        st.session_state["oldMedian"] = medianVotes
+
+    meanChange = round(meanVotes - st.session_state["oldMean"], 2)
+    medianChange = medianVotes - st.session_state["oldMedian"]
+
+    col1, col2 = st.columns(2)
+    col1.metric("Mean votes per spot", meanVotes, meanChange)
+    col2.metric("Median votes per spot", medianVotes, medianChange)
+
+    st.session_state["oldMean"] = meanVotes
+    st.session_state["oldMedian"] = medianVotes
