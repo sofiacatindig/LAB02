@@ -1,0 +1,42 @@
+{
+    "chart_title": "Halloween Costumes",
+    "costumes": [
+        {
+            "character": "Suki",
+            "source": "2 Fast 2 Furious",
+            "cost": 65,
+            "store": "Dolls Kill",
+            "arrives_before_oct_31": true
+        },
+        {
+            "character": "Britney Spears",
+            "source": "2001 VMAs",
+            "cost": 55,
+            "store": "Dolls Kill",
+            "arrives_before_oct_31": true
+        },
+        {
+            "character": "Wonder Woman",
+            "source": "DC Comics",
+            "cost": 89,
+            "store": "JCPenney",
+            "arrives_before_oct_31": false
+        },
+        {
+            "character": "Police Officer",
+            "source": "N/A",
+            "cost": 50,
+            "store": "Spirit Halloween",
+            "arrives_before_oct_31": false
+        },
+        {
+            "character": "Mermaid",
+            "source": "N/A",
+            "cost": 120,
+            "store": "Edikted",
+            "arrives_before_oct_31": true
+        }
+    ]
+}
+
+
